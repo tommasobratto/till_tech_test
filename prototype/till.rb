@@ -9,12 +9,13 @@ class Till
   end
 
   def take_order brew
+    brew_total_price = 0
     orders << brew
-    brew_price = 0
+
     orders.each do |product|
       if product == brew
-        brew_price += 5
-        line_total_price[brew] = brew_price
+        brew_total_price += brew.price
+        line_total_price[brew] = brew_total_price
       end
     end
   end
