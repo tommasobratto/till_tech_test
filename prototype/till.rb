@@ -31,7 +31,7 @@ class Till
       receipt << line
     end
     products = receipt.map { |product| "#{product}" }.join(' ')
-    return products + " " + total.to_s + "£"
+    return products + " " + "total: " + total.to_s + "£"
   end
 
 end
