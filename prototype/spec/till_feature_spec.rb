@@ -33,7 +33,9 @@ feature 'till prints receipt' do
   end
 
   scenario 'prints the total for an order' do
-
+    2.times { till.take_order latte }
+    till.take_order espresso
+    expect(till.total).to eq 13
   end
 
 end
