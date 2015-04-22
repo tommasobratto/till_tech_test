@@ -25,6 +25,10 @@ feature 'till prints receipt' do
     expect(till.orders.last).to be espresso
   end
 
+  scenario 'prints the quantity of products chosen' do
+
+  end
+
   scenario 'prints correct prices for each product' do
     2.times { till.take_order latte }
     till.take_order espresso
@@ -41,7 +45,7 @@ feature 'till prints receipt' do
   scenario 'prints a receipt with all of the above' do
     2.times { till.take_order latte }
     till.take_order espresso
-    expect(till.receipt).to eq "latte: 10£ \n espresso: 3£ \n total: 13£"
+    expect(till.receipt).to eq "2 x latte: 10£ \n 1 x espresso: 3£ \n total: 13£"
   end
 
 end
