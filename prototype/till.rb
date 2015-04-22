@@ -1,7 +1,7 @@
 class Till
 
   def initialize
-    @orders = {}
+    @orders = []
   end
 
   def orders
@@ -9,15 +9,7 @@ class Till
   end
 
   def take_order brew
-    brew_count = 1
-
-    orders.each do |product|
-      if product == brew
-        brew_count += 1
-      end
-    end
-
-    orders[brew] = brew_count
+      orders << brew
   end
 
 end
