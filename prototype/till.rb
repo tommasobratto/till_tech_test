@@ -20,4 +20,8 @@ class Till
     end
   end
 
+  def total
+    total = line_total_price.values.reduce {|result, element| result + element }
+  end
+
 end
