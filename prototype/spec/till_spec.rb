@@ -3,8 +3,8 @@ require_relative '../till.rb'
 describe Till do
 
   let(:till) { Till.new }
-  let(:latte) { double :latte, price: 5 }
-  let(:espresso) { double :espresso, price: 3 }
+  let(:latte) { double :product, name: "latte", price: 5 }
+  let(:espresso) { double :product, name: "espresso", price: 3 }
 
   it 'should be able to accept a product' do
     till.take_order latte

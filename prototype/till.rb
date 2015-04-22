@@ -21,7 +21,17 @@ class Till
   end
 
   def total
-    total = line_total_price.values.reduce {|result, element| result + element }
+    total = line_total_price.values.reduce { |result, element| result + element }
+  end
+
+  def receipt
+    receipt = []
+    line_total_price.each do |product, price|
+      line = product.name.to_s + " " + price.to_s
+      receipt << line
+    end
+    products = receipt.map { |product| "#{product}" }.join(' ')
+    return products + " " + total.to_s
   end
 
 end

@@ -4,8 +4,8 @@ require_relative '../till.rb'
 feature 'till prints receipt' do
 
   let(:till) { Till.new }
-  let(:latte) { double :product, price: 5 }
-  let(:espresso) { double :product, price: 3 }
+  let(:latte) { double :product, name: "latte", price: 5 }
+  let(:espresso) { double :product, name: "espresso", price: 3 }
 
   scenario 'prints a receipt for a product' do
     till = Till.new
@@ -36,6 +36,12 @@ feature 'till prints receipt' do
     2.times { till.take_order latte }
     till.take_order espresso
     expect(till.total).to eq 13
+  end
+
+  scenario 'prints a receipt with all of the above' do
+    2.times { till.take_order latte }
+    till.take_order espresso
+    expect(till.receipt).to eq "latte 10 espresso 3 13"
   end
 
 end
