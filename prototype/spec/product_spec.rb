@@ -12,5 +12,4 @@ describe Product do
     expect(latte.price).to eq 4.75
   end
 
-
 end

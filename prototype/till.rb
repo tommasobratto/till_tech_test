@@ -1,6 +1,6 @@
 class Till
 
-  attr_accessor :orders, :quantity, :line_price
+  attr_accessor :orders, :quantity, :line_price, :total_price
 
   def initialize
     @orders = []
@@ -23,7 +23,7 @@ class Till
   end
 
   def calculate_total_price
-    total = line_price.values.reduce { |result, price| price + result }
+    @total_price = line_price.values.reduce { |result, price| price + result }
   end
 
 end

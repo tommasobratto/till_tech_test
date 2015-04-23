@@ -30,7 +30,8 @@ describe Till do
     till.calculate_quantity
     till.calculate_line_price latte
     till.calculate_line_price cappuccino
-    expect(till.calculate_total_price).to eq 13.35
+    till.calculate_total_price
+    expect(till.total_price).to eq 13.35
   end
 
 end
