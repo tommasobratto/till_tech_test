@@ -1,10 +1,11 @@
 class Receipt
 
-  attr_accessor :order_line, :order_quantity
+  attr_accessor :order_line, :order_quantity, :total_price
 
   def initialize
     @order_quantity = {}
     @order_line = {}
+    @total_price = 0
   end
 
   def get_product_line till
@@ -17,6 +18,10 @@ class Receipt
     till.quantity.each do |order, quantity|
       order_quantity[order] = quantity
     end
+  end
+
+  def get_total_price till
+    @total_price = till.total_price
   end
 
   def display_product
@@ -35,6 +40,10 @@ class Receipt
     order_quantity.each do |order, quantity|
       return order_quantity[order]
     end
+  end
+
+  def show_total
+    return @total_price
   end
 
 end
