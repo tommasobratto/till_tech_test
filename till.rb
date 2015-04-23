@@ -1,6 +1,6 @@
 class Till
 
-  attr_accessor :orders, :quantity, :line_price, :total_price, :tax, :taxed_total
+  attr_accessor :orders, :quantity, :line_price, :total_price, :tax, :taxed_total, :cash_accepted, :change
   attr_reader :tax_percent
 
   def initialize
@@ -34,6 +34,14 @@ class Till
 
   def calculate_taxed_total
     @taxed_total = total_price + tax
+  end
+
+  def accept_cash bills
+    @cash_accepted = bills
+  end
+
+  def calculate_change
+    @change = cash_accepted - taxed_total
   end
 
 end

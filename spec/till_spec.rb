@@ -55,4 +55,23 @@ describe Till do
     till.calculate_tax
     expect(till.calculate_taxed_total).to eq 14.50
   end
+
+  it 'should be able to accept a payment' do
+    till.accept_cash 20
+    expect(till.cash_accepted).to eq 20
+  end
+
+  it 'should be able to calculate the change for an accepted payment' do
+    2.times { till.take_order latte }
+    till.take_order cappuccino
+    till.calculate_quantity
+    till.calculate_line_price latte
+    till.calculate_line_price cappuccino
+    till.calculate_total_price
+    till.calculate_tax
+    till.calculate_taxed_total
+    till.accept_cash 20
+    expect(till.calculate_change).to eq 5.50
+  end
+
 end
