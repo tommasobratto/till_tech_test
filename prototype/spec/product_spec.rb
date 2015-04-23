@@ -2,9 +2,15 @@ require_relative '../product.rb'
 
 describe Product do
 
-  it 'should have a name and a price' do
-    latte = Product.new("latte", 5)
-    expect(latte.price).to eq 5
+  let(:latte) { Product.new('Cafe Latte') }
+
+  it 'should have a name' do
+    expect(latte.name).to eq "Cafe Latte"
   end
+
+  it 'should have a price' do
+    expect(latte.price).to eq 4.75
+  end
+
 
 end

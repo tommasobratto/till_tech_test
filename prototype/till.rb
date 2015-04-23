@@ -1,44 +1,33 @@
+require_relative './menu.rb'
+
 class Till
 
-  attr_reader :line_total_price, :line_quantity
-  attr_accessor :orders
+  attr_accessor :orders, :quantity, :line_price
+  attr_reader :menu
 
   def initialize
+    load_files
     @orders = []
-    @line_total_price = {}
-    @line_quantity = {}
+    @quantity = Hash.new(0)
+    @line_price = {}
   end
 
   def take_order product
-    product_quantity = 0
-    product_total_price = 0
     orders << product
+  end
 
-    orders.each do |element|
-      if element == product
-        product_total_price += product.price
-        product_quantity += 1
-        line_total_price[product] = product_total_price
-        line_quantity[product] = product_quantity
-      end
+  def calculate_quantity
+    orders.each do |product|
+      quantity[product] += 1
     end
   end
 
-  def total
-    total = line_total_price.values.reduce { |result, element| result + element }
+  def calculate_line_price product
+    line_price[product] = quantity[product] * menu[product]
   end
 
-  def receipt
-    receipt = []
+  def calculate_total_price
 
-    line_total_price.each do |product, price|
-      line = line_quantity[product].to_s + " x " + product.name.to_s + ": " + price.to_s + "£ \n"
-      receipt << line
-    end
-
-    products = receipt.map { |line| "#{line}" }.join(' ')
-
-    return products + " " + "total: " + total.to_s + "£"
   end
 
 end
