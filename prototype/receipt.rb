@@ -7,10 +7,25 @@ class Receipt
     @order_line = {}
   end
 
-  def display_product till
+  def get_product_line till
     till.line_price.each do |order, price|
       order_line[order] = price
-      return order_line.key(price)
+    end
+  end
+
+  def get_product_quantity till
+
+  end
+
+  def display_product
+    order_line.each do |order, price|
+      return order_line.key(order_line[order])
+    end
+  end
+
+  def display_product_price
+    order_line.each do |order, price|
+      return order_line[order]
     end
   end
 
