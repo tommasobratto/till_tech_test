@@ -1,6 +1,6 @@
 class Till
 
-  attr_accessor :orders, :quantity, :line_price, :total_price, :tax
+  attr_accessor :orders, :quantity, :line_price, :total_price, :tax, :taxed_total
   attr_reader :tax_percent
 
   def initialize
@@ -30,6 +30,10 @@ class Till
 
   def calculate_tax
     @tax = ((total_price.to_f * tax_percent) / 100).round(2)
+  end
+
+  def calculate_taxed_total
+    @taxed_total = total_price + tax
   end
 
 end

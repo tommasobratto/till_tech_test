@@ -45,4 +45,14 @@ describe Till do
     expect(till.tax).to eq 1.15
   end
 
+  it 'should be able to calculate the total price, taxed' do
+    2.times { till.take_order latte }
+    till.take_order cappuccino
+    till.calculate_quantity
+    till.calculate_line_price latte
+    till.calculate_line_price cappuccino
+    till.calculate_total_price
+    till.calculate_tax
+    expect(till.calculate_taxed_total).to eq 14.50
+  end
 end

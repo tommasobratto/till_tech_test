@@ -3,7 +3,7 @@ require_relative '../receipt.rb'
 describe Receipt do
 
   let(:receipt) { Receipt.new }
-  let(:till) { double :till, line_price: {}, quantity: {}, total_price: 13.35 }
+  let(:till) { double :till, line_price: {}, quantity: {}, taxed_total: 14.50 }
 
   before do
     till.line_price['Cafe Latte'] = 9.50
@@ -39,13 +39,13 @@ describe Receipt do
 
   it 'should be able to show a total price' do
     receipt.get_total_price till
-    expect(receipt.show_total).to eq 13.35
+    expect(receipt.show_total).to eq 14.50
   end
 
   it 'should be able to show an actual receipt' do
     receipt.get_product_line till
     receipt.get_product_quantity till
     receipt.get_total_price till
-    expect(receipt.display_receipt).to eq "2 x Cafe Latte: 9.5£ \n 1 x Cappucino: 3.85£ \n amount total: 13.35£"
+    expect(receipt.display_receipt).to eq "2 x Cafe Latte: 9.5£ \n 1 x Cappucino: 3.85£ \n amount total: 14.5£"
   end
 end

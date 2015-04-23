@@ -21,7 +21,7 @@ class Receipt
   end
 
   def get_total_price till
-    @total_price = till.total_price
+    @total_price = till.taxed_total
   end
 
   def display_product order
