@@ -12,17 +12,17 @@ describe Receipt do
 
   it 'should be able to show a product' do
     receipt.get_product_line till
-    expect(receipt.display_product).to eq 'Cafe Latte'
+    expect(receipt.display_product 'Cafe Latte').to eq 'Cafe Latte'
   end
 
   it 'should be able to show a line price for a product' do
     receipt.get_product_line till
-    expect(receipt.display_product_price).to eq 9.50
+    expect(receipt.display_product_price 'Cafe Latte').to eq 9.50
   end
 
   it 'should be able to show the quantity of a product' do
     receipt.get_product_quantity till
-    expect(receipt.display_product_quantity).to eq 2
+    expect(receipt.display_product_quantity 'Cafe Latte').to eq 2
   end
 
   before do
@@ -42,7 +42,10 @@ describe Receipt do
     expect(receipt.show_total).to eq 13.35
   end
 
-  # it 'should be able to show an actual receipt' do
-
-  # end
+  it 'should be able to show an actual receipt' do
+    receipt.get_product_line till
+    receipt.get_product_quantity till
+    receipt.get_total_price till
+    expect(receipt.display_receipt).to eq "2 x Cafe Latte: 9.5£ \n 1 x Cappucino: 3.85£ \n amount total: 13.35£"
+  end
 end
