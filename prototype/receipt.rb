@@ -14,7 +14,9 @@ class Receipt
   end
 
   def get_product_quantity till
-
+    till.quantity.each do |order, quantity|
+      order_quantity[order] = quantity
+    end
   end
 
   def display_product
@@ -26,6 +28,12 @@ class Receipt
   def display_product_price
     order_line.each do |order, price|
       return order_line[order]
+    end
+  end
+
+  def display_product_quantity
+    order_quantity.each do |order, quantity|
+      return order_quantity[order]
     end
   end
 

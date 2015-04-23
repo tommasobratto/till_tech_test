@@ -7,6 +7,7 @@ describe Receipt do
 
   before do
     till.line_price['Cafe Latte'] = 9.50
+    till.quantity['Cafe Latte'] = 2
   end
 
   it 'should be able to show a product' do
@@ -19,13 +20,16 @@ describe Receipt do
     expect(receipt.display_product_price).to eq 9.50
   end
 
-  # it 'should be able to show the quantity of a product' do
-
-  # end
+  it 'should be able to show the quantity of a product' do
+    receipt.get_product_quantity till
+    expect(receipt.display_product_quantity).to eq 2
+  end
 
   before do
     till.line_price['Cafe Latte'] = 9.50
+    till.quantity['Cafe Latte'] = 2
     till.line_price['Cappucino'] = 3.85
+    till.quantity['Cappucino'] = 1
     till.total_price 13.35
   end
 
